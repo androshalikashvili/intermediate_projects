@@ -74,10 +74,6 @@ class BookManager: # BookManager კლასის შექმნა
         author = self._input_author()
         year = self._input_year()
 
-        # while year > datetime.now().year: #ამოწმებს რომ წელი არ იყოს მიმდინარეზე მეტი
-        #     print("Invalid year. Publication year cannot be in the future.")
-        #     year = self._input_year()
-
         new_book = Book(title, author, year)
         self._books.append(new_book)
         print(f'Book "{title}" added successfully')
