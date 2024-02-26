@@ -57,9 +57,14 @@ class BookManager: # BookManager კლასის შექმნა
     # ამოწმებს წიგნის გამოცემის წლის მნიშვნელობას, იღებს მხოლოდ რიცხვს
     def _input_year(self):
         while True:
-            year = input("Enter the year of publication of the book (Only number): ")
+            year = input("Enter the year of publication of the book (1900 to current year): ")
             try:
-                return int(year)
+                year = int(year)
+
+                if not 1900 <= year <= datetime.now().year:
+                    print("Invalid year. Please enter a year between 1900 and the current year.")
+                else:
+                    return year
             except ValueError:
                 print("Invalid year format. Please enter a valid number.")
 
@@ -69,9 +74,9 @@ class BookManager: # BookManager კლასის შექმნა
         author = self._input_author()
         year = self._input_year()
 
-        while year > datetime.now().year: #ამოწმებს რომ წელი არ იყოს მიმდინარეზე მეტი
-            print("Invalid year. Publication year cannot be in the future.")
-            year = self._input_year()
+        # while year > datetime.now().year: #ამოწმებს რომ წელი არ იყოს მიმდინარეზე მეტი
+        #     print("Invalid year. Publication year cannot be in the future.")
+        #     year = self._input_year()
 
         new_book = Book(title, author, year)
         self._books.append(new_book)
